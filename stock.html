@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Buy — Available IDs — EXOTIC CLUB</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="wrap guide-wrap">
+
+  <a href="index.html" class="back-link glass pill">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+    মূল পেইজে ফিরুন
+  </a>
+
+  <div class="brand">
+    <div class="guide-title">Available IDs</div>
+    <div class="brand-tag">স্টকে থাকা ভেরিফাইড একাউন্টসমূহ</div>
+  </div>
+
+  <div class="search-bar glass pill">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" id="stockSearch" placeholder="ইউজারনেম বা কোড দিয়ে সার্চ করুন..." />
+  </div>
+
+  <div class="stock-list" id="stockList"></div>
+
+  <div class="form-note" style="max-width:400px;">
+    কোনো আইডি পছন্দ হলে তার ৫-সংখ্যার কোডটি WhatsApp / Messenger-এ এডমিনকে পাঠান — সাথে সাথে বুঝে নেব আপনি কোন আইডির কথা বলছেন।
+  </div>
+
+  <div class="site-footer">EXOTIC CLUB © <span id="year"></span></div>
+
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="db.js"></script>
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+function escapeHTML(str) {
+  const d = document.createElement("div");
+  d.textContent = str || "";
+  return d.innerHTML;
+}
+
+let allStock = [];
+const listEl = document.getElementById("stockList");
+const searchEl = document.getElementById("stockSearch");
+
+function cardHTML(item) {
+  return `
+    <div class="stock-card glass pill">
+      <div class="stock-main">
+        <div class="stock-user">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="17" height="17"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>
+          <span>${escapeHTML(item.username)}</span>
+          <span class="tag status-tag">${escapeHTML(item.status)}</span>
+        </div>
+        <div class="stock-stats">
+          <span class="stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg>
+            ${escapeHTML(item.followers)} followers
+          </span>
+          <span class="stat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M12 21s-7.5-4.8-9.8-9.4C.6 8.1 2.3 4.9 5.6 4.3c2-.3 3.7.7 4.9 2.2 1.2-1.5 2.9-2.5 4.9-2.2 3.3.6 5 3.8 3.4 7.3C19.5 16.2 12 21 12 21z"/></svg>
+            ${escapeHTML(item.likes)} likes
+          </span>
+        </div>
+      </div>
+      <div class="stock-side">
+        <div class="stock-price">${escapeHTML(item.price)}</div>
+        <div class="stock-code" title="এডমিনকে এই কোড দিন">#${escapeHTML(item.code)}</div>
+      </div>
+    </div>`;
+}
+
+function render(filter) {
+  const f = (filter || "").trim().toLowerCase();
+  const filtered = !f
+    ? allStock
+    : allStock.filter((it) =>
+        (it.username || "").toLowerCase().includes(f) ||
+        (it.code || "").toLowerCase().includes(f)
+      );
+  if (!filtered.length) {
+    listEl.innerHTML = `<div class="empty-state glass pill">কোনো আইডি পাওয়া যায়নি।</div>`;
+    return;
+  }
+  listEl.innerHTML = filtered.map(cardHTML).join("");
+}
+
+searchEl.addEventListener("input", () => render(searchEl.value));
+
+window.DB.subscribeStock((stock) => {
+  allStock = stock;
+  render(searchEl.value);
+});
+</script>
+</body>
+</html>

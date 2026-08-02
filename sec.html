@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Secret Workflow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #040e0b;
+      --pink-glow: #ff007f;
+      --red-glow: #ff2a2a;
+      --yellow-glow: #ffe600;
+      --glass-bg: rgba(12, 32, 24, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --text-main: #f0f7f4;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(255, 0, 127, 0.18), transparent 40%),
+        radial-gradient(circle at 90% 50%, rgba(255, 230, 0, 0.15), transparent 40%),
+        radial-gradient(circle at 50% 90%, rgba(255, 42, 42, 0.15), transparent 40%);
+      background-attachment: fixed;
+      font-family: 'Hind Siliguri', sans-serif;
+      color: var(--text-main);
+      padding: 40px 20px;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    /* Header Styling */
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .header h1 {
+      font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--pink-glow), var(--yellow-glow), var(--red-glow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(255, 0, 127, 0.3);
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      color: #a3c2b5;
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    /* Glassmorphism Card Style */
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 25px 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--pink-glow), var(--yellow-glow));
+    }
+
+    /* Pill Badges */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .pill-pink {
+      background: rgba(255, 0, 127, 0.2);
+      color: var(--pink-glow);
+      border: 1px solid var(--pink-glow);
+      box-shadow: 0 0 12px rgba(255, 0, 127, 0.4);
+    }
+
+    .pill-yellow {
+      background: rgba(255, 230, 0, 0.2);
+      color: var(--yellow-glow);
+      border: 1px solid var(--yellow-glow);
+      box-shadow: 0 0 12px rgba(255, 230, 0, 0.4);
+    }
+
+    .pill-red {
+      background: rgba(255, 42, 42, 0.2);
+      color: var(--red-glow);
+      border: 1px solid var(--red-glow);
+      box-shadow: 0 0 12px rgba(255, 42, 42, 0.4);
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      color: #ffffff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p {
+      color: #d1e0d9;
+      font-size: 1.05rem;
+      text-align: justify;
+    }
+
+    /* SVG Icon Styling */
+    .icon {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+
+    /* Specific Code / UI Mockup for Uploading Method */
+    .example-box {
+      background: #000000;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 15px;
+      font-family: monospace;
+      color: #ffffff;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    .example-box .hashtags {
+      color: #38ef7d;
+      font-weight: bold;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .example-box .mentions {
+      color: #1e90ff;
+      font-weight: bold;
+    }
+
+    /* Secret Card Special Glow */
+    .secret-card {
+      background: linear-gradient(135deg, rgba(255, 0, 127, 0.15), rgba(255, 230, 0, 0.15));
+      border: 1px solid var(--yellow-glow);
+      box-shadow: 0 0 25px rgba(255, 230, 0, 0.25);
+    }
+
+    /* Print styling to ensure background print seamlessly */
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background-color: #040e0b !important;
+      }
+      .card {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Header -->
+    <div class="header">
+      <h1>Tiktok Secret Workflow</h1>
+      <p class="subtitle">১০০% পরীক্ষিত ভাইরালিটি গাইডলাইন ও সিক্রেট মেথড</p>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="card">
+      <div class="pill pill-pink">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+        Step 01
+      </div>
+      <h2>Perfect Account Creating</h2>
+      <p>সঠিক নাম এবং ইউজারনেম বানাতে হবে এবং fresh অথবা old জিমেইল একাউন্ট দিয়ে আইডি খুলতে হবে। ঝামেলাযুক্ত জিমেইল বা temp-mail দিয়ে আইডি খোলা থেকে বিরত থাকতে হবে! ❌</p>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="card">
+      <div class="pill pill-yellow">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        Step 02
+      </div>
+      <h2>Category And Algorithm Adjustment</h2>
+      <p>আইডি খোলা হয়ে গেলে আগেই ভিডিও দেখা শুরু না করে আমাদের দেওয়া ভিডিওগুলোতে গিয়ে সেইসকল ক্রিয়েটরদের ফলো, লাইক, কমেন্ট এবং রিপোস্ট করতে হবে। তারপরে টিকটক থেকে বেরিয়ে আবারো ঢুকতে হবে এবং ForYou-এর ভিডিওগুলো দেখতে হবে। তখন মিশ্র কন্টেন্ট আসবে (যেমন: লিরিক্স + ভয়েস এর সাথে ফালতু বা অন্য ক্যাটাগরির ভিডিও)। তখন সেই ভিডিওর শেয়ার বাটনে গিয়ে <b>Not Interested</b> বাটনে ক্লিক করতে হবে। তাহলে সেই ভিডিওগুলো আর আসবে না। আর শুধু লিরিক্স+ভয়েস ভিডিওগুলোতে লাইক+ফলো দিতে হবে। যার ফলে আমাদের একাউন্টটি Lyrics + Voice Category তে চলে যাবে এবং দ্রুত ভিডিও ভাইরাল করার সুবিধা হবে।</p>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="card">
+      <div class="pill pill-red">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+        Step 03
+      </div>
+      <h2>Sound Researching And Video Saving</h2>
+      <p>আইডির ক্যাটাগরি চেঞ্জ হয়ে যখন ForYou-তে শুধু Lyrics+Voice এই দুই ধরনের ভিডিও আসা শুরু করবে, তখন বুঝে নিবেন অ্যালগরিদম একাউন্টটিকে সেট করে ফেলেছে। এবার ভাইরাল ভয়েসগুলো খুঁজবো। কোনো সাউন্ড ভালো লাগলে ভিডিওর সাউন্ড অপশনে গিয়ে Original Video-তে গিয়ে তা সেভ করবো। এভাবে ৫-৭ টি ভিডিও সেভ করার পর প্রোফাইলের সেভ অপশনে গিয়ে বাছাই করে ভালো লাগা ভিডিওগুলোর লিংক কপি করবো এবং বাকিগুলো ডিলিট করে দেবো।</p>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="card">
+      <div class="pill pill-pink">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+        Step 04
+      </div>
+      <h2>Video to MP3 & Editing Quality</h2>
+      <p>লিংকগুলো কপি করা হয়ে গেলে <b>savetik.co</b> সাইটে গিয়ে ভিডিওগুলো MP3 format এ ডাউনলোড করে নেবো। এরপর Alight Motion/Ultra Motion দিয়ে ভিডিও বানিয়ে তা <b>1440p + 30fps + Full Bitrate</b> দিয়ে সেভ করে নেবো!</p>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="card">
+      <div class="pill pill-yellow">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M5 4v12h14V4H5zm0-2h14c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2zm8 14.5l-2.33-3.04-1.67 2.16-1.5-1.92L5 18h14l-3.5-4.5z"/></svg>
+        Step 05
+      </div>
+      <h2>Video Uploading Method</h2>
+      <p>ভিডিও তৈরি হয়ে গেলে সরাসরি প্রোফাইলে গিয়ে সেভ করা সাউন্ডে গিয়ে <i>Use Audio</i> দিয়ে ভিডিও সিলেক্ট করে ম্যাচিং করবো। কভার পিক সিলেক্ট করার পর ক্যাপশনের জায়গায় প্রথমে মূলকথা ইংরেজিতে লিখে ইমোজি ব্যবহার করবো। তারপর স্পেস দিয়ে ভাইরাল হ্যাসট্যাগ ও আইডি মেনশন দেবো। সবশেষে Advance Setting এ গিয়ে <b>Upload at Highest Quality</b> অন করে আপলোড করে দেবো।</p>
+      
+      <!-- Photo Example Box -->
+      <div class="example-box">
+        <div style="font-size: 0.8rem; color: #888; margin-bottom: 5px;">EXAMPLE CAPTION FORMAT:</div>
+        <div>Ami Din Rat Ak Kore Dibo"!!😌🫶</div>
+        <div class="hashtags">
+          #(আইডির_ইউজারনেম)<br>
+          #viral<br>
+          #treanding<br>
+          #foryou<br>
+          #foryoupage
+        </div>
+        <div class="mentions">@TikTok @TikTok Bangladesh</div>
+      </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="card">
+      <div class="pill pill-red">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+        Step 06
+      </div>
+      <h2>Quality Maintain</h2>
+      <p>হাই কোয়ালিটিতে আপলোড করতে ফালতু কোনো টেকনিকের প্রয়োজন নেই। টাইম টু টাইম ভিডিও আপলোড দিবেন, ভালো নেটওয়ার্ক ব্যবহার করবেন এবং ফুল হাই কোয়ালিটিতে সেভ করবেন। মনে রাখবেন— এই লিরিক্স ভিডিওগুলোতে ইমোশনের প্রয়োজন, শুধু কোয়ালিটির নয়! 💯</p>
+    </div>
+
+    <!-- Secret Reveal -->
+    <div class="card secret-card">
+      <div class="pill pill-yellow">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        Bonus
+      </div>
+      <h2 style="color: var(--yellow-glow);">Secret Reveal?</h2>
+      <p>এই সকল বিষয়গুলো খেয়াল রেখে কাজ করলে আইডি <b>৪-৭ দিনের ভেতরে ForYou তে ঢুকতে বাধ্য</b>। আমাদের Workflow ১০০% পরীক্ষিত! সিক্রেট মেথডটি প্রয়োগ করা হলে খুব অল্প সময়ের ভেতরেই আইডিগুলো ভালো মানের রিচ পাবে।</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

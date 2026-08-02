@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — EXOTIC CLUB</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- password gate -->
+<div class="gate-card glass" id="gate">
+  <div class="brand-logo" style="font-size:1.6rem;">EXOTIC CLUB</div>
+  <div class="brand-tag">admin access</div>
+  <input type="password" id="pwInput" placeholder="••••••••" autocomplete="off" />
+  <div class="gate-error" id="gateError"></div>
+  <button type="button" id="gateBtn">Unlock</button>
+</div>
+
+<!-- dashboard -->
+<div class="wrap admin-wrap" id="dashboard" style="display:none;">
+
+  <div class="admin-header glass">
+    <div class="brand-logo">EXOTIC CLUB</div>
+    <div class="admin-status">
+      <span class="led" id="led"></span>
+      <span id="statusText">checking…</span>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button type="button" class="tab-btn active" data-panel="panel-person">Person Report</button>
+    <button type="button" class="tab-btn" data-panel="panel-anon">Anonymous Report</button>
+    <button type="button" class="tab-btn" data-panel="panel-stock">Stock</button>
+    <button type="button" class="tab-btn" data-panel="panel-course">Course</button>
+    <button type="button" class="tab-btn" data-panel="panel-settings">Settings</button>
+  </div>
+
+  <div class="panel active" id="panel-person">
+    <div id="personList"></div>
+  </div>
+
+  <div class="panel" id="panel-anon">
+    <div id="anonList"></div>
+  </div>
+
+  <div class="panel" id="panel-stock">
+    <div class="settings-card glass">
+      <h3>Add ID to Stock</h3>
+      <div class="field-row">
+        <div class="field">
+          <label>Username</label>
+          <input type="text" id="stkUsername" placeholder="@username" />
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <select id="stkStatus">
+            <option>Verified</option>
+            <option>Active</option>
+            <option>New</option>
+            <option>Aged</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Followers</label>
+          <input type="text" id="stkFollowers" placeholder="42.5K" />
+        </div>
+        <div class="field">
+          <label>Likes</label>
+          <input type="text" id="stkLikes" placeholder="1.2M" />
+        </div>
+      </div>
+      <div class="field">
+        <label>Price</label>
+        <input type="text" id="stkPrice" placeholder="৳ ৮,০০০" />
+      </div>
+      <button type="button" class="save-btn" id="addStockBtn">+ Add to Stock</button>
+    </div>
+
+    <div id="stockAdminList" style="display:flex; flex-direction:column; gap:10px;"></div>
+  </div>
+
+  <div class="panel" id="panel-course">
+    <div class="settings-card glass">
+      <h3>Course Buy Links (WhatsApp / Messenger / Telegram)</h3>
+      <div class="field">
+        <label>WhatsApp link</label>
+        <input type="text" id="courseWhatsapp" placeholder="https://wa.me/8801..." />
+      </div>
+      <div class="field">
+        <label>Messenger link</label>
+        <input type="text" id="courseMessenger" placeholder="https://m.me/..." />
+      </div>
+      <div class="field">
+        <label>Telegram link</label>
+        <input type="text" id="courseTelegram" placeholder="https://t.me/..." />
+      </div>
+      <button type="button" class="save-btn" id="saveCourseBtn">Save Course Links</button>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-settings">
+
+    <div class="settings-card glass">
+      <h3>Notice</h3>
+      <div class="field">
+        <label>Notice pill text</label>
+        <input type="text" id="noticeInput" placeholder="নোটিশ লিখুন..." />
+      </div>
+    </div>
+
+    <div class="settings-card glass">
+      <h3>Sell Link</h3>
+      <div class="field">
+        <label>Sell link</label>
+        <input type="text" id="sellLinkInput" placeholder="https://t.me/..." />
+      </div>
+    </div>
+
+    <button type="button" class="save-btn" id="saveSettingsBtn">Save Settings</button>
+
+    <div class="settings-card glass">
+      <h3>Client Reviews</h3>
+      <div id="reviewsList" style="display:flex; flex-direction:column; gap:10px;"></div>
+
+      <div class="review-row">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" id="newReviewName" placeholder="ক্লায়েন্টের নাম" />
+        </div>
+        <div class="field" style="flex:2;">
+          <label>Review text</label>
+          <input type="text" id="newReviewText" placeholder="রিভিউ লিখুন..." />
+        </div>
+      </div>
+      <button type="button" class="add-review-btn" id="addReviewBtn">+ Add Review</button>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="toast pill" id="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="db.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
