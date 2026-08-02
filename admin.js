@@ -202,17 +202,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ---------------- course links ---------------- */
-    const courseWhatsapp = document.getElementById("courseWhatsapp");
     const courseMessenger = document.getElementById("courseMessenger");
     const courseTelegram = document.getElementById("courseTelegram");
     window.DB.subscribeCourseConfig((cfg) => {
-      if (document.activeElement !== courseWhatsapp) courseWhatsapp.value = cfg.whatsapp || "";
       if (document.activeElement !== courseMessenger) courseMessenger.value = cfg.messenger || "";
       if (document.activeElement !== courseTelegram) courseTelegram.value = cfg.telegram || "";
     });
     document.getElementById("saveCourseBtn").addEventListener("click", async () => {
       await window.DB.saveCourseConfig({
-        whatsapp: courseWhatsapp.value.trim(),
         messenger: courseMessenger.value.trim(),
         telegram: courseTelegram.value.trim()
       });

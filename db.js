@@ -63,7 +63,7 @@
     { id: "stk1", username: "@sample.creator", followers: "42.5K", likes: "1.2M", status: "Verified", price: "৳ ৮,০০০", code: "10234" }
   ];
 
-  const DEFAULT_COURSE_CONFIG = { whatsapp: "", messenger: "", telegram: "" };
+  const DEFAULT_COURSE_CONFIG = { messenger: "", telegram: "" };
 
   window.DB = {
     LOCAL_MODE,

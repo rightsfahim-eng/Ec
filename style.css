@@ -349,6 +349,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .sub-dot{ width:10px; height:10px; border-radius:50%; flex:0 0 auto; }
 .sub-dot.buy-dot{ background:var(--yellow); box-shadow:0 0 9px var(--yellow); }
 .sub-dot.sell-dot{ background:var(--red); box-shadow:0 0 9px var(--red); }
+.sub-btn.icon-only{ gap:0; }
+.sub-btn.icon-only svg{ filter:drop-shadow(0 0 6px currentColor); }
+.sub-btn.icon-only#btnMessenger{ color:var(--pink-soft); }
+.sub-btn.icon-only#btnTelegram{ color:var(--mint); }
 
 /* ==========================================================================
    Reviews strip
@@ -487,8 +491,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .type-chip.selected{
   color:#0a0a0a;
   background:
-    linear-gradient(120deg, rgba(255,46,196,0.88) 0%, rgba(255,43,72,0.88) 45%, rgba(255,225,77,0.88) 100%),
-    rgba(10,28,20,0.35);
+    linear-gradient(120deg, #ff2ec4 0%, #ff2b48 45%, #ffe14d 100%);
   border-color:var(--glass-border-strong);
   font-weight:600;
 }
@@ -519,8 +522,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .btn-send{
   background:
-    linear-gradient(120deg, rgba(255,46,196,0.88) 0%, rgba(255,43,72,0.88) 45%, rgba(255,225,77,0.88) 100%),
-    rgba(10,28,20,0.35);
+    linear-gradient(120deg, #ff2ec4 0%, #ff2b48 45%, #ffe14d 100%);
   color:#0a0a0a;
   font-weight:700;
   border-color:var(--glass-border-strong);
@@ -661,8 +663,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border:1px solid var(--glass-border-strong);
   border-radius:var(--radius-pill);
   background:
-    linear-gradient(120deg, rgba(255,46,196,0.88) 0%, rgba(255,43,72,0.88) 45%, rgba(255,225,77,0.88) 100%),
-    rgba(10,28,20,0.35);
+    linear-gradient(120deg, #ff2ec4 0%, #ff2b48 45%, #ffe14d 100%);
   color:#0a0a0a;
   font-family:var(--font-logo);
   font-size:1.5rem;
@@ -906,8 +907,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   padding:10px 20px; border-radius:var(--radius-pill);
   border:1px solid var(--glass-border-strong);
   background:
-    linear-gradient(120deg, rgba(255,46,196,0.88) 0%, rgba(255,43,72,0.88) 45%, rgba(255,225,77,0.88) 100%),
-    rgba(10,28,20,0.35);
+    linear-gradient(120deg, #ff2ec4 0%, #ff2b48 45%, #ffe14d 100%);
   color:#0a0a0a; font-weight:700; font-family:var(--font-body);
   align-self:flex-start;
 }
