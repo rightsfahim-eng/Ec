@@ -91,9 +91,10 @@
         window.addEventListener("storage", emit);
         return () => window.removeEventListener("local-db-change", handler);
       }
-      return fdb.collection("config").doc("site").onSnapshot((doc) => {
-        cb(doc.exists ? doc.data() : DEFAULT_CONFIG);
-      });
+      return fdb.collection("config").doc("site").onSnapshot(
+        (doc) => cb(doc.exists ? doc.data() : DEFAULT_CONFIG),
+        (err) => { console.error("[EXOTIC CLUB] config read failed:", err.message); cb(DEFAULT_CONFIG); }
+      );
     },
     async saveConfig(data) {
       if (LOCAL_MODE) return lsSet(LS_KEYS.config, data);
@@ -113,11 +114,14 @@
         window.addEventListener("storage", emit);
         return () => window.removeEventListener("local-db-change", handler);
       }
-      return fdb.collection("reviews").orderBy("createdAt", "desc").onSnapshot((snap) => {
-        const list = [];
-        snap.forEach((d) => list.push({ id: d.id, ...d.data() }));
-        cb(list.length ? list : DEFAULT_REVIEWS);
-      });
+      return fdb.collection("reviews").orderBy("createdAt", "desc").onSnapshot(
+        (snap) => {
+          const list = [];
+          snap.forEach((d) => list.push({ id: d.id, ...d.data() }));
+          cb(list.length ? list : DEFAULT_REVIEWS);
+        },
+        (err) => { console.error("[EXOTIC CLUB] reviews read failed:", err.message); cb(DEFAULT_REVIEWS); }
+      );
     },
     async addReview({ name, text }) {
       if (LOCAL_MODE) {
@@ -147,11 +151,14 @@
         window.addEventListener("storage", emit);
         return () => window.removeEventListener("local-db-change", handler);
       }
-      return fdb.collection("stock").orderBy("createdAt", "desc").onSnapshot((snap) => {
-        const list = [];
-        snap.forEach((d) => list.push({ id: d.id, ...d.data() }));
-        cb(list);
-      });
+      return fdb.collection("stock").orderBy("createdAt", "desc").onSnapshot(
+        (snap) => {
+          const list = [];
+          snap.forEach((d) => list.push({ id: d.id, ...d.data() }));
+          cb(list);
+        },
+        (err) => { console.error("[EXOTIC CLUB] stock read failed:", err.message); cb([]); }
+      );
     },
     async addStock({ username, followers, likes, status, price }) {
       const code = String(Math.floor(10000 + Math.random() * 90000));
@@ -183,9 +190,10 @@
         window.addEventListener("storage", emit);
         return () => window.removeEventListener("local-db-change", handler);
       }
-      return fdb.collection("config").doc("course").onSnapshot((doc) => {
-        cb(doc.exists ? doc.data() : DEFAULT_COURSE_CONFIG);
-      });
+      return fdb.collection("config").doc("course").onSnapshot(
+        (doc) => cb(doc.exists ? doc.data() : DEFAULT_COURSE_CONFIG),
+        (err) => { console.error("[EXOTIC CLUB] course config read failed:", err.message); cb(DEFAULT_COURSE_CONFIG); }
+      );
     },
     async saveCourseConfig(data) {
       if (LOCAL_MODE) return lsSet(LS_KEYS.courseConfig, data);
@@ -202,11 +210,14 @@
         window.addEventListener("storage", emit);
         return () => window.removeEventListener("local-db-change", handler);
       }
-      return fdb.collection("reports").orderBy("createdAt", "desc").onSnapshot((snap) => {
-        const list = [];
-        snap.forEach((d) => list.push({ id: d.id, ...d.data() }));
-        cb(list);
-      });
+      return fdb.collection("reports").orderBy("createdAt", "desc").onSnapshot(
+        (snap) => {
+          const list = [];
+          snap.forEach((d) => list.push({ id: d.id, ...d.data() }));
+          cb(list);
+        },
+        (err) => { console.error("[EXOTIC CLUB] reports read failed:", err.message); cb([]); }
+      );
     },
     async addReport(data) {
       if (LOCAL_MODE) {

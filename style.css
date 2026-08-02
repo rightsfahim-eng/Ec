@@ -279,6 +279,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .main-btn.btn-guide .icon{ color:var(--yellow); }
 .main-btn.btn-secret .icon{ color:var(--mint); }
 .main-btn.btn-secret:hover{ box-shadow:var(--shadow-neon-mint); }
+.main-btn.btn-course .icon{ color:var(--pink-soft); }
+.main-btn.btn-course:hover{ box-shadow:var(--shadow-neon-pink); }
 .main-btn.btn-buysell .icon{ color:var(--pink); }
 .main-btn.btn-report .icon{ color:var(--red); }
 
@@ -483,10 +485,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .type-chip svg{ width:14px; height:14px; flex:0 0 auto; }
 .type-chip.selected{
-  color:var(--ink);
+  color:#0a0a0a;
   background:
-    linear-gradient(120deg, rgba(255,46,196,0.4) 0%, rgba(255,43,72,0.4) 45%, rgba(255,225,77,0.4) 100%),
-    rgba(16,46,34,0.6);
+    linear-gradient(120deg, rgba(255,46,196,0.88) 0%, rgba(255,43,72,0.88) 45%, rgba(255,225,77,0.88) 100%),
+    rgba(10,28,20,0.35);
   border-color:var(--glass-border-strong);
   font-weight:600;
 }
@@ -517,9 +519,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .btn-send{
   background:
-    linear-gradient(120deg, rgba(255,46,196,0.4) 0%, rgba(255,43,72,0.4) 45%, rgba(255,225,77,0.4) 100%),
-    rgba(16,46,34,0.6);
-  color:var(--ink);
+    linear-gradient(120deg, rgba(255,46,196,0.88) 0%, rgba(255,43,72,0.88) 45%, rgba(255,225,77,0.88) 100%),
+    rgba(10,28,20,0.35);
+  color:#0a0a0a;
+  font-weight:700;
   border-color:var(--glass-border-strong);
 }
 .btn-send:hover{ box-shadow:var(--shadow-neon-red); transform:translateY(-2px); }
@@ -658,9 +661,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border:1px solid var(--glass-border-strong);
   border-radius:var(--radius-pill);
   background:
-    linear-gradient(120deg, rgba(255,46,196,0.42) 0%, rgba(255,43,72,0.42) 45%, rgba(255,225,77,0.42) 100%),
-    rgba(16,46,34,0.6);
-  color:var(--ink);
+    linear-gradient(120deg, rgba(255,46,196,0.88) 0%, rgba(255,43,72,0.88) 45%, rgba(255,225,77,0.88) 100%),
+    rgba(10,28,20,0.35);
+  color:#0a0a0a;
   font-family:var(--font-logo);
   font-size:1.5rem;
   letter-spacing:.08em;
@@ -903,9 +906,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   padding:10px 20px; border-radius:var(--radius-pill);
   border:1px solid var(--glass-border-strong);
   background:
-    linear-gradient(120deg, rgba(255,46,196,0.4) 0%, rgba(255,43,72,0.4) 45%, rgba(255,225,77,0.4) 100%),
-    rgba(16,46,34,0.6);
-  color:var(--ink); font-weight:700; font-family:var(--font-body);
+    linear-gradient(120deg, rgba(255,46,196,0.88) 0%, rgba(255,43,72,0.88) 45%, rgba(255,225,77,0.88) 100%),
+    rgba(10,28,20,0.35);
+  color:#0a0a0a; font-weight:700; font-family:var(--font-body);
   align-self:flex-start;
 }
 
