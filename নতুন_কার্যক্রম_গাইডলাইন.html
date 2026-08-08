@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>নতুন কার্যক্রম গাইডলাইন</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#020905;
+    --bg-1:#04140d;
+    --bg-2:#071f14;
+
+    --gold:#ffcf4d;
+    --gold-soft:#e6bd5c;
+    --gold-dim: rgba(255,207,77,0.55);
+    --green:#20c26b;
+    --green-deep:#0c3d26;
+    --green-glow: rgba(32,194,107,0.20);
+    --gold-glow: rgba(255,207,77,0.14);
+
+    --white:#eef4ef;
+    --ink-soft: rgba(238,244,239,0.76);
+    --ink-faint: rgba(238,244,239,0.48);
+
+    --glass: rgba(255,255,255,0.032);
+    --glass-strong: rgba(255,255,255,0.055);
+    --glass-border: rgba(255,255,255,0.09);
+    --gold-border: rgba(255,207,77,0.28);
+    --green-border: rgba(32,194,107,0.28);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ background: var(--bg-0); }
+
+  body{
+    font-family: 'Hind Siliguri', 'Noto Sans Bengali', 'Nirmala UI', 'Vrinda', sans-serif;
+    color: var(--white);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    position:relative;
+    background:
+      radial-gradient(46% 34% at 88% 0%, var(--gold-glow) 0%, transparent 62%),
+      radial-gradient(55% 42% at 6% 100%, var(--green-glow) 0%, transparent 58%),
+      radial-gradient(130% 85% at 50% 45%, transparent 45%, rgba(0,0,0,0.62) 100%),
+      linear-gradient(165deg, var(--bg-1) 0%, var(--bg-0) 48%, #010603 100%);
+    padding: 40px 16px 56px 16px;
+  }
+
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+    background-size: 36px 36px;
+    pointer-events:none;
+  }
+
+  .sheet{
+    position:relative; z-index:1;
+    width:100%;
+    max-width: 640px;
+  }
+
+  /* ---------- HEADER ---------- */
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:7px 18px;
+    border-radius:999px;
+    background: rgba(255,207,77,0.07);
+    border: 1px solid var(--gold-border);
+    color: var(--gold);
+    font-weight:600;
+    font-size:12px;
+    letter-spacing:0.4px;
+    box-shadow: 0 0 26px rgba(255,207,77,0.10), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  .header{ margin-bottom: 20px; }
+
+  h1.title{
+    margin-top:16px;
+    font-size:32px;
+    font-weight:700;
+    line-height:1.3;
+    color: var(--white);
+    text-shadow: 0 4px 30px rgba(0,0,0,0.55);
+  }
+
+  .subtitle{
+    margin-top:7px;
+    font-family:'Poppins', 'Hind Siliguri', sans-serif;
+    font-size:12.5px;
+    font-weight:500;
+    color: var(--ink-faint);
+    letter-spacing:0.3px;
+  }
+
+  .divider{
+    margin-top:18px;
+    height:1px;
+    width:100%;
+    background: linear-gradient(90deg, var(--gold-dim), rgba(32,194,107,0.35), transparent);
+  }
+
+  /* ---------- GLASS CARD ---------- */
+  .card{
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 18px 20px;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  .section-label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:14.5px;
+    font-weight:700;
+    color: var(--gold);
+    letter-spacing:0.3px;
+    margin: 24px 0 12px 0;
+  }
+  .section-label .bar{
+    width:5px; height:16px; border-radius:3px;
+    background: linear-gradient(180deg, var(--green), var(--gold));
+    display:inline-block;
+    box-shadow: 0 0 10px rgba(255,207,77,0.35);
+  }
+
+  .intro-text{
+    font-size:14px;
+    line-height:1.9;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- STAT GRID (signature element) ---------- */
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:10px;
+    margin-top:14px;
+  }
+  @media (max-width:480px){
+    .stat-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat-tile{
+    background: linear-gradient(165deg, var(--glass-strong), var(--glass));
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 16px 8px 13px 8px;
+    text-align:center;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    position:relative;
+    overflow:hidden;
+  }
+  .stat-tile::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0; height:2.5px;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    box-shadow: 0 0 10px rgba(255,207,77,0.35);
+  }
+  .stat-num{
+    font-size:22px;
+    font-weight:700;
+    color: var(--white);
+    line-height:1.15;
+  }
+  .stat-label{
+    margin-top:6px;
+    font-size:10.5px;
+    color: var(--ink-faint);
+    line-height:1.4;
+  }
+
+  .rule-list{
+    margin-top:16px;
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+  }
+  .rule-item{
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+    font-size:14px;
+    line-height:1.8;
+    color: var(--ink-soft);
+  }
+  .rule-dot{
+    flex:0 0 auto;
+    width:9px; height:9px;
+    margin-top:8px;
+    border-radius:50%;
+    background: linear-gradient(135deg, var(--green), var(--gold));
+    box-shadow: 0 0 10px rgba(255,207,77,0.5);
+  }
+  .rule-item b{ color: var(--gold-soft); font-weight:700; }
+
+  /* ---------- WARNING CARD ---------- */
+  .warning-card{
+    background: linear-gradient(165deg, rgba(255,207,77,0.055), rgba(255,255,255,0.02));
+    border: 1px solid var(--gold-border);
+    border-left: 3px solid var(--gold);
+    border-radius: 20px;
+    padding: 18px 20px;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .warning-title{
+    display:flex; align-items:center; gap:8px;
+    font-size:15px; font-weight:700; color: var(--gold);
+    margin-bottom:11px;
+    letter-spacing:0.2px;
+  }
+  .chip-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin: 10px 0 14px 0;
+  }
+  .chip{
+    display:inline-block;
+    padding:7px 16px;
+    border-radius:999px;
+    background: rgba(255,255,255,0.035);
+    border:1px solid rgba(255,255,255,0.12);
+    font-size:11.5px;
+    color: var(--ink-soft);
+  }
+  .warning-text{
+    font-size:14px;
+    line-height:1.9;
+    color: var(--ink-soft);
+  }
+  .warning-text b{ color: var(--gold-soft); font-weight:700; }
+  .warning-text .danger{
+    color: var(--gold);
+    font-weight:700;
+    text-shadow: 0 0 16px rgba(255,207,77,0.30);
+  }
+
+  /* ---------- RESPONSIBILITY CHECKLIST ---------- */
+  .resp-grid{
+    margin-top:15px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .resp-item{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    background: var(--glass);
+    border:1px solid var(--glass-border);
+    border-radius: 999px;
+    padding: 10px 18px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .resp-num{
+    flex:0 0 auto;
+    width:26px; height:26px;
+    border-radius:50%;
+    background: linear-gradient(135deg, var(--green), var(--gold));
+    color:#06170d;
+    font-weight:700;
+    font-size:12px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .resp-text{
+    font-size:13.5px;
+    color: var(--white);
+  }
+
+  /* ---------- CLOSING CTA ---------- */
+  .cta-bar{
+    margin-top:24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding: 18px 24px;
+    border-radius:26px;
+    background: linear-gradient(120deg, rgba(32,194,107,0.10), rgba(255,207,77,0.10));
+    border: 1px solid var(--gold-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 22px 55px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .cta-text{
+    font-size:14px;
+    font-weight:600;
+    color: var(--white);
+    line-height:1.65;
+  }
+  .cta-check{
+    flex:0 0 auto;
+    width:36px; height:36px;
+    border-radius:50%;
+    background: linear-gradient(135deg, var(--green), var(--gold));
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px;
+    box-shadow: 0 0 22px rgba(255,207,77,0.35);
+  }
+
+  .footer{
+    margin-top: 26px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-family:'Poppins', sans-serif;
+    font-size:10px;
+    font-weight:500;
+    color: var(--ink-faint);
+    letter-spacing:0.4px;
+  }
+  .footer .pill-tag{
+    padding:5px 13px;
+    border-radius:999px;
+    border:1px solid var(--glass-border);
+    background: var(--glass);
+  }
+
+  @media (max-width: 420px){
+    h1.title{ font-size:26px; }
+    .cta-bar{ flex-direction:column; align-items:flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="header">
+    <span class="eyebrow">🔔 আজ থেকে কার্যকর</span>
+    <h1 class="title">নতুন কার্যক্রম গাইডলাইন</h1>
+    <div class="subtitle">Account Name &amp; Username Limitation Update — Task Team Notice</div>
+    <div class="divider"></div>
+  </div>
+
+  <div class="card">
+    <p class="intro-text">
+      সম্মানিত টিম মেম্বাররা, সম্প্রতি আমাদের বিজনেস ম্যানেজারের পক্ষ থেকে একটি নতুন লিমিটেশন দেওয়া হয়েছে —
+      যেসব অ্যাকাউন্টের নাম ও ইউজারনেম পরিবর্তন করা হয়েছে, সেগুলো আর ক্রয়যোগ্য নয়। এই কারণে আজ থেকে আমরা
+      নতুনভাবে আমাদের কার্যক্রম শুরু করছি। নিচের নিয়মগুলো মনোযোগসহকারে পড়ুন এবং যথাযথভাবে অনুসরণ করুন।
+    </p>
+  </div>
+
+  <div class="section-label"><span class="bar"></span> নতুন নিয়মাবলী</div>
+
+  <div class="stat-grid">
+    <div class="stat-tile">
+      <div class="stat-num">২টি</div>
+      <div class="stat-label">প্রতিজনের সর্বোচ্চ অ্যাকাউন্ট</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-num">৮–১০</div>
+      <div class="stat-label">দিনের মধ্যে টাস্ক শেষ</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-num">১৩০০</div>
+      <div class="stat-label">ফলোয়ার টার্গেট</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-num">১০,০০০</div>
+      <div class="stat-label">লাইক টার্গেট</div>
+    </div>
+  </div>
+
+  <div class="rule-list">
+    <div class="rule-item">
+      <span class="rule-dot"></span>
+      <span>আগে প্রতিজন একসাথে ৩–৪টি অ্যাকাউন্ট পরিচালনা করতেন। আজ থেকে প্রতিজন <b>সর্বোচ্চ ২টি</b> অ্যাকাউন্ট নিয়ে কাজ করবেন।</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-dot"></span>
+      <span>নির্ধারিত ২টি অ্যাকাউন্টের টাস্ক <b>৮–১০ দিনের মধ্যে</b> সম্পন্ন করতে হবে। এর আগে সম্পন্ন হলে আলহামদুলিল্লাহ!</span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-dot"></span>
+      <span>প্রতিটি অ্যাকাউন্টের টার্গেট থাকবে <b>১৩০০ ফলোয়ার এবং ১০,০০০ লাইক।</b></span>
+    </div>
+    <div class="rule-item">
+      <span class="rule-dot"></span>
+      <span>টাস্ক পূরণ হওয়ার সাথে সাথে সেই অ্যাকাউন্টের কাজ বন্ধ করে <b>সরাসরি অ্যাডমিনকে জানাতে হবে।</b> কারণ, যত সময় নষ্ট হবে, তত আমাদেরই ক্ষতি।</span>
+    </div>
+  </div>
+
+  <div class="section-label" style="margin-top:24px"><span class="bar"></span> সতর্কতা</div>
+
+  <div class="warning-card">
+    <div class="warning-title">⚠️ লোভনীয় প্রস্তাব থেকে সাবধান</div>
+    <p class="warning-text">কাজ চলাকালীন অনেকেই বিভিন্নভাবে লোভনীয় প্রস্তাব দিতে পারে, যেমন —</p>
+    <div class="chip-row">
+      <span class="chip">"ভালো দাম দেব, আইডি আমার কাছে বিক্রি করো"</span>
+      <span class="chip">"আমরা আইডি কিনি, আইডি দাও"</span>
+      <span class="chip">"তোমার অ্যাডমিনের পরিচিত, এখন থেকে আইডি আমরাই নেব"</span>
+    </div>
+    <p class="warning-text">
+      এই ধরনের যেকোনো মেসেজ পেলে <b>সঙ্গে সঙ্গে ইগনোর করে ব্লক করে দিতে হবে।</b>
+      কেউ যদি বিশ্বাসঘাতকতা করে এবং তা প্রমাণিত হয়, তাহলে শাস্তিস্বরূপ
+      <span class="danger">তার সকল অ্যাকাউন্ট আমাদের সাইবার টিমের মাধ্যমে ব্যান করে দেওয়া হবে।</span>
+    </p>
+  </div>
+
+  <div class="section-label"><span class="bar"></span> দায়িত্বসমূহ</div>
+
+  <div class="resp-grid">
+    <div class="resp-item"><span class="resp-num">১</span><span class="resp-text">অ্যাডমিনের কাছ থেকে টাস্ক গ্রহণ করা</span></div>
+    <div class="resp-item"><span class="resp-num">২</span><span class="resp-text">টাস্ক যথাযথভাবে সম্পন্ন করা</span></div>
+    <div class="resp-item"><span class="resp-num">৩</span><span class="resp-text">টাস্ক পূরণে কোনো সমস্যা হলে অ্যাডমিনকে জানানো</span></div>
+    <div class="resp-item"><span class="resp-num">৪</span><span class="resp-text">স্প্যামারদের থেকে দূরে থাকা</span></div>
+    <div class="resp-item"><span class="resp-num">৫</span><span class="resp-text">বিশ্বাসঘাতকতা না করা</span></div>
+    <div class="resp-item"><span class="resp-num">৬</span><span class="resp-text">কাজ শেষে অ্যাডমিনকে আইডি বুঝিয়ে দেওয়া</span></div>
+  </div>
+
+  <div class="cta-bar">
+    <span class="cta-text">উপরের নিয়মগুলো মেনে চললে মূল বেতনের সাথে অতিরিক্ত বোনাসও যুক্ত হবে —<br>তাই দেরি না করে আজ থেকেই সঠিকভাবে কাজ শুরু করুন।</span>
+    <span class="cta-check">✅</span>
+  </div>
+
+  <div class="footer">
+    <span class="pill-tag">Task Team Guideline</span>
+    <span class="pill-tag">Effective Today</span>
+  </div>
+
+</div>
+</body>
+</html>
